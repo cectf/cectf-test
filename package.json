@@ -1,0 +1,31 @@
+{
+  "name": "cectf-test",
+  "version": "1.0.0",
+  "description": "end to end tests for the cectf application",
+  "main": "index.ts",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cectf/cectf-test.git"
+  },
+  "author": "Daniel Chiquito",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cectf/cectf-test/issues"
+  },
+  "jest": {
+    "modulePaths": [
+      "<rootDir>/src/js"
+    ],
+    "testPathIgnorePatterns": [
+      "<rootDir>/node_modules/"
+    ]
+  },
+  "homepage": "https://github.com/cectf/cectf-test#readme",
+  "devDependencies": {
+    "jest": "^24.9.0",
+    "nightmare": "^3.0.2"
+  }
+}
