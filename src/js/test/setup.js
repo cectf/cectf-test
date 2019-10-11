@@ -1,6 +1,6 @@
 const Nightmare = require('nightmare');
 
-jest.setTimeout(10000);
+jest.setTimeout(60000);
 
 global.nightmare = null;
 
