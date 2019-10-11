@@ -2,6 +2,10 @@ const setupNightmare = require('./setup');
 
 describe('login', () => {
 
+  it('dummy test', () => {
+    return;
+  });
+
   describe('logging in as contestant', () => {
 
     setupNightmare((nightmare) => {
