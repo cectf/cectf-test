@@ -7,7 +7,7 @@ global.nightmare = null;
 setupNightmare = function (before, after) {
     beforeAll(() => {
         nightmare = new Nightmare({ show: false });
-        nightmare.goto('http://127.0.0.1/');
+        nightmare.goto('http://ctf-staging.chiquito.us/');
         if (before) {
             return before(nightmare);
         }
