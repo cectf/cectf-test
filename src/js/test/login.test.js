@@ -9,6 +9,7 @@ describe('login', () => {
   describe('logging in as contestant', () => {
 
     setupNightmare((nightmare) => {
+      console.log('called contestant login setup');
       return nightmare
         .wait('#username')
         .insert('#username', 'a')
@@ -18,11 +19,14 @@ describe('login', () => {
     });
 
     it('welcome message', () => {
+      console.log('started welcome message test');
       return nightmare
         .evaluate(() => {
+          console.log('evaluatin');
           return document.querySelector('#user-bar__welcome').innerText;
         })
         .then(message => {
+          console.log('assertin', message);
           expect(message).toEqual('Welcome, user a!')
         });
     });
