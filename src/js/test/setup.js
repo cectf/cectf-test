@@ -1,6 +1,6 @@
 const Nightmare = require('nightmare');
 
-jest.setTimeout(60000);
+jest.setTimeout(10000);
 
 global.nightmare = null;
 
@@ -9,8 +9,9 @@ setupNightmare = function (before, after) {
         console.log("BeforeAll!");
         nightmare = new Nightmare({ show: false });
         console.log("nightmare'd. sp00ky");
-        nightmare.goto('http://ctf-staging.chiquito.us');
+        var got = nightmare.goto('http://ctf-staging.chiquito.us');
         console.log("goto san");
+        console.log(got);
         if (before) {
             return before(nightmare);
         }

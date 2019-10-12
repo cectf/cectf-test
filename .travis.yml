@@ -6,4 +6,5 @@ branches:
   - master
 script:
   - wget http://ctf-staging.chiquito.us
+  - cat index.html
   - npm test
