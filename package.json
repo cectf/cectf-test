@@ -4,7 +4,7 @@
   "description": "end to end tests for the cectf application",
   "main": "index.ts",
   "scripts": {
-    "test": "DEBUG=nightmare:*,electron:* jest"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
