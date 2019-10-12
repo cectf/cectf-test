@@ -1,10 +1,10 @@
-const setupNightmare = require('./setup');
+const setupNightmare = require('./setup.js');
 
 describe('login', () => {
 
   describe('logging in as contestant', () => {
 
-    setupNightmare((nightmare) => {
+    setup.nightmare((nightmare) => {
       return nightmare
         .wait('#username')
         .insert('#username', 'a')
@@ -40,7 +40,7 @@ describe('login', () => {
 
   describe('logging in as admin', () => {
 
-    setupNightmare((nightmare) => {
+    setup.nightmare((nightmare) => {
       return nightmare
         .wait('#username')
         .insert('#username', 'abc')
@@ -76,7 +76,7 @@ describe('login', () => {
 
   describe('logging in with bad credentials', () => {
 
-    setupNightmare((nightmare) => {
+    setup.nightmare((nightmare) => {
       return nightmare
         .wait('#username')
         .insert('#username', 'username')

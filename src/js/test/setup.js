@@ -4,10 +4,11 @@ jest.setTimeout(10000);
 
 global.nightmare = null;
 
-setupNightmare = function (before, after) {
+var setupNightmare = function (before, after) {
     beforeAll(() => {
         nightmare = new Nightmare({ show: false });
-        nightmare.goto('http://ctf-staging.chiquito.us');
+        nightmare.goto(CECTF_URL + '/api/test/reset');
+        nightmare.goto(CECTF_URL);
         if (before) {
             return before(nightmare);
         }
@@ -22,4 +23,11 @@ setupNightmare = function (before, after) {
     })
 }
 
-module.exports = setupNightmare;
+var loginAsUser = function(before, after) {
+    return setupNightmare(before,(nightmare) => {
+
+        after(nightmare);
+    });
+}
+
+module.exports = { nightmare: setupNightmare };
