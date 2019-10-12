@@ -10,8 +10,7 @@ setupNightmare = function (before, after) {
         nightmare = new Nightmare({ show: false });
         console.log("nightmare'd. sp00ky");
         var got = nightmare.goto('http://ctf-staging.chiquito.us');
-        console.log("goto san");
-        console.log(got);
+        got.then(obj => {console.log(obj);});
         if (before) {
             return before(nightmare);
         }
