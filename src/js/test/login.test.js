@@ -1,3 +1,4 @@
+const testData = require('./test-data');
 const utils = require('./utils');
 
 describe('login', () => {
@@ -13,7 +14,7 @@ describe('login', () => {
           return document.querySelector('#user-bar__welcome').innerText;
         })
         .then(message => {
-          expect(message).toEqual('Welcome, user a!')
+          expect(message).toEqual('Welcome, user ' + testData.users.contestant.username + '!')
         });
     });
 
@@ -43,7 +44,7 @@ describe('login', () => {
           return document.querySelector('#user-bar__welcome').innerText;
         })
         .then(message => {
-          expect(message).toEqual('Welcome, user abc!')
+          expect(message).toEqual('Welcome, user ' + testData.users.admin.username + '!')
         });
     });
 

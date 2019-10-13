@@ -1,15 +1,14 @@
 const testData = require('./test-data');
 const Nightmare = require('nightmare');
 
-jest.setTimeout(10000);
-
-global.nightmare = null;
+jest.setTimeout(20000);
 
 var setupNightmare = function () {
     beforeAll(() => {
         nightmare = new Nightmare({ show: CECTF_SHOW_TEST_WINDOW });
         nightmare.goto(CECTF_URL + '/api/test/reset');
         nightmare.goto(CECTF_URL);
+        nightmare.wait('#app-content')
         return nightmare;
     });
     afterAll(() => {
@@ -59,6 +58,7 @@ var openAdminTab = function () {
 
 module.exports = {
     setupNightmare,
+    loginAs,
     loginAsContestant,
     loginAsAdmin,
     openAboutTab,

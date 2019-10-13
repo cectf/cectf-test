@@ -130,15 +130,15 @@ describe('challenge', () => {
     utils.openCTFTab();
     beforeAll(() => {
       nightmare
-        .click('#challenges > [data-id="1"]')
-        .insert('#flag', testData.challenges[0].solution + '!!!!!!!!')
+        .click('#challenges > [data-id="2"]')
+        .insert('#flag', testData.challenges[1].solution + '!!!!!!!!')
         .click('#submit')
         .wait(2000);
     });
 
     it('challenge solved', () => {
       return nightmare
-        .exists('#challenges > [data-id="1"] > [data-id="solution"]')
+        .exists('#challenges > [data-id="2"] > [data-id="solution"]')
         .then(exists => {
           expect(exists).toEqual(false);
         });
