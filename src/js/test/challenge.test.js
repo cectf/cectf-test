@@ -13,6 +13,7 @@ describe('challenge', () => {
 
       it('title', () => {
         return nightmare
+          .wait('#challenges > [data-id="1"]')
           .evaluate(() => {
             return document.querySelector('#challenges > [data-id="1"] > [data-id="title"]').innerText;
           })
@@ -23,6 +24,7 @@ describe('challenge', () => {
 
       it('category', () => {
         return nightmare
+          .wait('#challenges > [data-id="1"]')
           .evaluate(() => {
             return document.querySelector('#challenges > [data-id="1"] > [data-id="category"]').innerText;
           })
@@ -33,6 +35,7 @@ describe('challenge', () => {
 
       it('not hinted', () => {
         return nightmare
+          .wait('#challenges > [data-id="1"]')
           .exists('#challenges > [data-id="1"] > [data-id="hint"]')
           .then(exists => {
             expect(exists).toEqual(false);
@@ -41,6 +44,7 @@ describe('challenge', () => {
 
       it('not solved', () => {
         return nightmare
+          .wait('#challenges > [data-id="1"]')
           .exists('#challenges > [data-id="1"] > [data-id="solution"]')
           .then(exists => {
             expect(exists).toEqual(false);
@@ -53,6 +57,7 @@ describe('challenge', () => {
 
       it('title', () => {
         return nightmare
+          .wait('#challenges > [data-id="2"]')
           .evaluate(() => {
             return document.querySelector('#challenges > [data-id="2"] > [data-id="title"]').innerText;
           })
@@ -63,6 +68,7 @@ describe('challenge', () => {
 
       it('category', () => {
         return nightmare
+          .wait('#challenges > [data-id="2"]')
           .evaluate(() => {
             return document.querySelector('#challenges > [data-id="2"] > [data-id="category"]').innerText;
           })
@@ -73,6 +79,7 @@ describe('challenge', () => {
 
       it('not hinted', () => {
         return nightmare
+          .wait('#challenges > [data-id="2"]')
           .exists('#challenges > [data-id="2"] > [data-id="hint"]')
           .then(exists => {
             expect(exists).toEqual(false);
@@ -81,6 +88,7 @@ describe('challenge', () => {
 
       it('not solved', () => {
         return nightmare
+          .wait('#challenges > [data-id="2"]')
           .exists('#challenges > [data-id="2"] > [data-id="solution"]')
           .then(exists => {
             expect(exists).toEqual(false);
@@ -98,6 +106,7 @@ describe('challenge', () => {
     utils.openCTFTab();
     beforeAll(() => {
       nightmare
+        .wait('#challenges > [data-id="1"]')
         .click('#challenges > [data-id="1"]')
         .insert('#flag', testData.challenges[0].solution)
         .click('#submit')
@@ -130,6 +139,7 @@ describe('challenge', () => {
     utils.openCTFTab();
     beforeAll(() => {
       nightmare
+        .wait('#challenges > [data-id="2"]')
         .click('#challenges > [data-id="2"]')
         .insert('#flag', testData.challenges[1].solution + '!!!!!!!!')
         .click('#submit')
