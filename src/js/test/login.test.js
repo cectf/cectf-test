@@ -22,7 +22,7 @@ describe('login', () => {
       return nightmare
         .evaluate(() => {
           return Array.prototype.map.call(
-            document.getElementsByClassName('nav-tab'),
+            document.querySelectorAll('#nav-bar div'),
             element => { return element.innerText; }
           );
         })
@@ -52,7 +52,7 @@ describe('login', () => {
       return nightmare
         .evaluate(() => {
           return Array.prototype.map.call(
-            document.getElementsByClassName('nav-tab'),
+            document.querySelectorAll('#nav-bar div'),
             element => { return element.innerText; }
           );
         })
