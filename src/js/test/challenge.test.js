@@ -127,7 +127,7 @@ describe('challenge', () => {
           return document.querySelector('#challenges > [data-id="1"] > [data-id="solution"]').innerText;
         })
         .then(solution => {
-          expect(solution).toEqual(testData.challenges[0].solution);
+          expect(solution).toEqual('Flag: ' + testData.challenges[0].solution);
         });
     });
   });
