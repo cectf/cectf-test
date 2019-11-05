@@ -1,12 +1,12 @@
 
 var contestant = {
-    username: 'a',
-    password: 'b'
+    username: 'contestant',
+    password: 'contestant'
 }
 
 var admin = {
-    username: 'abc',
-    password: '123'
+    username: 'admin',
+    password: 'admin'
 }
 
 var challenge1 = {
