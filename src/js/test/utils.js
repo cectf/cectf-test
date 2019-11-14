@@ -5,7 +5,13 @@ jest.setTimeout(20000);
 
 var setupNightmare = function () {
     beforeAll(() => {
-        nightmare = new Nightmare({ show: CECTF_SHOW_TEST_WINDOW });
+        var args = { show : CECTF_SHOW_TEST_WINDOW };
+        if (CECTF_SHOW_DEVTOOLS) {
+            args.openDevTools = {
+              mode: 'detach'
+            }
+        }
+        nightmare = new Nightmare(args);
         nightmare.goto(CECTF_URL + '/api/test/reset');
         nightmare.goto(CECTF_URL);
         nightmare.wait('#app-content')
