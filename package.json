@@ -16,17 +16,10 @@
   "bugs": {
     "url": "https://github.com/cectf/cectf-test/issues"
   },
-  "jest": {
-    "modulePaths": [
-      "<rootDir>/src/js"
-    ],
-    "testPathIgnorePatterns": [
-      "<rootDir>/node_modules/"
-    ]
-  },
   "homepage": "https://github.com/cectf/cectf-test#readme",
   "devDependencies": {
     "jest": "^24.9.0",
-    "nightmare": "^3.0.2"
+    "nightmare": "^3.0.2",
+    "node-fetch": "^2.6.0"
   }
 }

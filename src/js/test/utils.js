@@ -1,21 +1,25 @@
 const testData = require('./test-data');
 const Nightmare = require('nightmare');
+const fetch = require('node-fetch');
 
 jest.setTimeout(20000);
 
 var setupNightmare = function () {
     beforeAll(() => {
-        var args = { show : CECTF_SHOW_TEST_WINDOW };
+        var args = { show: CECTF_SHOW_TEST_WINDOW };
         if (CECTF_SHOW_DEVTOOLS) {
             args.openDevTools = {
-              mode: 'detach'
+                mode: 'detach'
             }
         }
-        nightmare = new Nightmare(args);
-        nightmare.goto(CECTF_URL + '/api/test/reset');
-        nightmare.goto(CECTF_URL);
-        nightmare.wait('#app-content')
-        return nightmare;
+
+        return fetch(CECTF_URL + '/api/test/reset')
+            .then(() => {
+                nightmare = new Nightmare(args);
+                nightmare.goto(CECTF_URL);
+                nightmare.wait('#app-content');
+                return;
+            });
     });
     afterAll(() => {
         return nightmare.end();
