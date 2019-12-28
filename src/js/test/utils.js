@@ -16,6 +16,7 @@ var setupNightmare = function () {
         return fetch(CECTF_URL + '/api/test/reset')
             .then(() => {
                 nightmare = new Nightmare(args);
+                nightmare.viewport(1000, 800);
                 nightmare.goto(CECTF_URL);
                 nightmare.wait('#app-content');
                 return;
@@ -66,6 +67,43 @@ var openAdminTab = function () {
     openTab('nav-admin', 'ADMIN');
 }
 
+var getPopups = function () {
+    return nightmare.evaluate(() => {
+        var elements = document.querySelectorAll('#popups > div');
+        var popups = [];
+        for (var i = 0; i < elements.length; i++) {
+            popups.push({
+                text: elements[i].innerHTML,
+                level: elements[i].attributes['data-level'].value
+            });
+        }
+        return popups;
+    }).catch(error => {
+        console.log("EMERGENCY");
+        console.log(error);
+        return [];
+    });
+}
+
+var waitForPopup = function (level, text) {
+    return new Promise(async resolve => {
+        var popups = await getPopups();
+        if (popups.length > 0) {
+            var matchingPopups = popups.filter(popup => {
+                return popup.level === level && popup.text === text;
+            });
+            if (matchingPopups.length > 0) {
+                return resolve();
+            }
+        }
+        setTimeout(() => waitForPopup(level, text)
+            .then(() => {
+                resolve();
+            }),
+            1000);
+    });
+}
+
 module.exports = {
     setupNightmare,
     loginAs,
@@ -73,5 +111,7 @@ module.exports = {
     loginAsAdmin,
     openAboutTab,
     openCTFTab,
-    openAdminTab
+    openAdminTab,
+    getPopups,
+    waitForPopup
 };

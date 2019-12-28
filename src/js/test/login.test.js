@@ -74,7 +74,11 @@ describe('login', () => {
         .click('#login')
     });
 
-    it('logged in', () => {
+    it('error popup', async () => {
+      await utils.waitForPopup('error', 'Username/password not found');
+    });
+
+    it('not logged in', () => {
       return nightmare
         .wait(2000)
         .wait('#user-bar[data-logged-in="false"]');
