@@ -24,7 +24,7 @@ describe('register', () => {
         .insert('#register-modal__username', username)
         .insert('#register-modal__password', password)
         .click('#register-modal__submit');
-      await utils.waitForPopup('error', 'Email is formatted incorectly');
+      await utils.waitForPopup('error', 'Email is formatted incorectly', utils.popupLocations.signup);
     });
 
     it('short username', async () => {
@@ -36,7 +36,7 @@ describe('register', () => {
         .insert('#register-modal__password')
         .insert('#register-modal__password', password)
         .click('#register-modal__submit');
-      await utils.waitForPopup('error', 'Username must have 3 or more characters');
+      await utils.waitForPopup('error', 'Username must have 3 or more characters', utils.popupLocations.signup);
     });
 
     it('short password', async () => {
@@ -48,7 +48,7 @@ describe('register', () => {
         .insert('#register-modal__password')
         .insert('#register-modal__password', short_password)
         .click('#register-modal__submit');
-      await utils.waitForPopup('error', 'Password must have 6 or more characters');
+      await utils.waitForPopup('error', 'Password must have 6 or more characters', utils.popupLocations.signup);
     });
 
     it('bad password', async () => {
@@ -60,7 +60,7 @@ describe('register', () => {
         .insert('#register-modal__password')
         .insert('#register-modal__password', bad_password)
         .click('#register-modal__submit');
-      await utils.waitForPopup('error', 'good god why would you choose that password');
+      await utils.waitForPopup('error', 'good god why would you choose that password', utils.popupLocations.signup);
     });
   });
 
@@ -83,7 +83,7 @@ describe('register', () => {
           return document.querySelector('#user-bar__welcome').innerText;
         })
         .then(message => {
-          expect(message).toEqual('Welcome, user ' + username + '!')
+          expect(message).toEqual('Welcome, ' + username + '!')
         });
     });
 
@@ -112,7 +112,7 @@ describe('register', () => {
           return document.querySelector('#user-bar__welcome').innerText;
         })
         .then(message => {
-          expect(message).toEqual('Welcome, user ' + username + '!')
+          expect(message).toEqual('Welcome, ' + username + '!')
         });
     });
 

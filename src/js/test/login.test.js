@@ -14,7 +14,7 @@ describe('login', () => {
           return document.querySelector('#user-bar__welcome').innerText;
         })
         .then(message => {
-          expect(message).toEqual('Welcome, user ' + testData.users.contestant.username + '!')
+          expect(message).toEqual('Welcome, ' + testData.users.contestant.username + '!')
         });
     });
 
@@ -44,7 +44,7 @@ describe('login', () => {
           return document.querySelector('#user-bar__welcome').innerText;
         })
         .then(message => {
-          expect(message).toEqual('Welcome, user ' + testData.users.admin.username + '!')
+          expect(message).toEqual('Welcome, ' + testData.users.admin.username + '!')
         });
     });
 
@@ -75,7 +75,7 @@ describe('login', () => {
     });
 
     it('error popup', async () => {
-      await utils.waitForPopup('error', 'Username/password not found');
+      await utils.waitForPopup('error', 'Username/password not found', utils.popupLocations.topBar);
     });
 
     it('not logged in', () => {

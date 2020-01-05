@@ -67,38 +67,34 @@ var openAdminTab = function () {
     openTab('nav-admin', 'ADMIN');
 }
 
-var getPopups = function () {
-    return nightmare.evaluate(() => {
-        var elements = document.querySelectorAll('#popups > div');
-        var popups = [];
-        for (var i = 0; i < elements.length; i++) {
-            popups.push({
-                text: elements[i].innerHTML,
-                level: elements[i].attributes['data-level'].value
-            });
-        }
-        return popups;
-    }).catch(error => {
-        console.log("EMERGENCY");
-        console.log(error);
-        return [];
-    });
+var popupLocations = {
+    topBar: "TOP_BAR",
+    challengeTile: "CHALLENGE_TILE",
+    signup: "SIGNUP"
 }
 
-var waitForPopup = function (level, text) {
-    return new Promise(async resolve => {
-        var popups = await getPopups();
-        if (popups.length > 0) {
-            var matchingPopups = popups.filter(popup => {
-                return popup.level === level && popup.text === text;
-            });
-            if (matchingPopups.length > 0) {
-                return resolve();
-            }
+var getPopup = function (location, locationKey) {
+    var locator = (locationKey)
+        ? '[data-location="' + location + '"][data-location-key="' + locationKey + '"]'
+        : '[data-location="' + location + '"]';
+    return nightmare.evaluate(locator => {
+        var element = document.querySelector(locator);
+        return {
+            level: element.attributes['data-level'].value,
+            text: element.innerHTML,
         }
-        setTimeout(() => waitForPopup(level, text)
-            .then(() => {
-                resolve();
+    }, locator);
+}
+
+var waitForPopup = function (level, text, location, locationKey) {
+    return new Promise(async resolve => {
+        var popup = await getPopup(location, locationKey);
+        if (popup.level === level && popup.text === text) {
+            return resolve(popup);
+        }
+        setTimeout(() => waitForPopup(level, text, location, locationKey)
+            .then(popup => {
+                resolve(popup);
             }),
             1000);
     });
@@ -112,6 +108,7 @@ module.exports = {
     openAboutTab,
     openCTFTab,
     openAdminTab,
-    getPopups,
+    popupLocations,
+    getPopup,
     waitForPopup
 };
