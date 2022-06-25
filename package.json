@@ -20,6 +20,6 @@
   "devDependencies": {
     "jest": "^24.9.0",
     "nightmare": "^3.0.2",
-    "node-fetch": "^2.6.0"
+    "node-fetch": "^2.6.7"
   }
 }
